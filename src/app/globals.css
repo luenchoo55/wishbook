@@ -1,0 +1,172 @@
+@import "tailwindcss";
+
+@theme {
+  --color-parchment: #f4e7c9;
+  --color-parchment-deep: #e6d1a2;
+  --color-ink: #3a2816;
+  --color-ink-soft: #6e5235;
+  --color-gold: #a97c2a;
+  --color-gold-light: #d8b462;
+  --color-wine: #7c2323;
+  --color-forest: #3e5b3a;
+  --color-leather: #4a2f1c;
+  --color-night: #2b2440;
+
+  --font-display: var(--font-cinzel), var(--font-noto-serif-tc), serif;
+  --font-serif: var(--font-noto-serif-tc), "Songti TC", "PMingLiU", serif;
+}
+
+html {
+  background: #2a1a0f;
+}
+
+body {
+  color: var(--color-ink);
+  font-family: var(--font-serif);
+  /* 皮革書桌 */
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(120, 72, 32, 0.55), transparent 60%),
+    radial-gradient(ellipse at 50% 100%, rgba(0, 0, 0, 0.6), transparent 70%),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.015) 0 2px,
+      transparent 2px 7px
+    ),
+    #3a2414;
+}
+
+/* 羊皮紙頁面 */
+.parchment {
+  background-color: var(--color-parchment);
+  background-image:
+    radial-gradient(ellipse at 20% 10%, rgba(255, 250, 230, 0.7), transparent 45%),
+    radial-gradient(ellipse at 85% 90%, rgba(160, 110, 50, 0.22), transparent 50%),
+    radial-gradient(ellipse at 0% 100%, rgba(120, 80, 30, 0.25), transparent 40%),
+    radial-gradient(ellipse at 100% 0%, rgba(120, 80, 30, 0.2), transparent 40%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.35 0 0 0 0 0.24 0 0 0 0 0.1 0 0 0 0.09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  box-shadow:
+    inset 0 0 60px rgba(110, 70, 25, 0.35),
+    0 20px 50px rgba(0, 0, 0, 0.55);
+}
+
+/* 燙金雙框 */
+.gilded {
+  position: relative;
+  border: 1px solid var(--color-gold);
+  outline: 1px solid rgba(169, 124, 42, 0.45);
+  outline-offset: 3px;
+}
+
+/* 四角花飾 */
+.corners::before,
+.corners::after {
+  content: "❦";
+  position: absolute;
+  font-size: 0.85rem;
+  line-height: 1;
+  color: var(--color-gold);
+  pointer-events: none;
+}
+.corners::before {
+  top: 4px;
+  left: 6px;
+  transform: rotate(180deg);
+}
+.corners::after {
+  bottom: 4px;
+  right: 6px;
+}
+
+.gold-text {
+  background: linear-gradient(180deg, #e9c877 0%, #a97c2a 55%, #6d4a12 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: none;
+}
+
+/* 墨水輸入框 */
+.ink-input {
+  background: rgba(255, 249, 232, 0.55);
+  border: 1px solid rgba(110, 82, 53, 0.45);
+  border-radius: 2px;
+  padding: 0.45rem 0.7rem;
+  color: var(--color-ink);
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.ink-input:focus {
+  border-color: var(--color-gold);
+  box-shadow: 0 0 0 2px rgba(216, 180, 98, 0.35);
+}
+.ink-input::placeholder {
+  color: rgba(110, 82, 53, 0.55);
+}
+
+/* 蠟封按鈕 */
+.btn-wax {
+  background: radial-gradient(circle at 35% 30%, #a83a3a, #6a1a1a 70%);
+  color: #f8e9c8;
+  border: 1px solid #4a0f0f;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 2px 4px rgba(0, 0, 0, 0.35);
+}
+.btn-wax:hover {
+  filter: brightness(1.1);
+}
+.btn-brass {
+  background: linear-gradient(180deg, #e3c47a, #b38a3a 60%, #8a6524);
+  color: #2e1e0b;
+  border: 1px solid #6d4a12;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+.btn-brass:hover {
+  filter: brightness(1.07);
+}
+.btn-ghost {
+  border: 1px solid rgba(110, 82, 53, 0.5);
+  color: var(--color-ink-soft);
+  background: rgba(255, 249, 232, 0.35);
+}
+.btn-ghost:hover {
+  border-color: var(--color-gold);
+  color: var(--color-ink);
+}
+.btn-wax:disabled,
+.btn-brass:disabled,
+.btn-ghost:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  filter: grayscale(0.5);
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--color-gold);
+}
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+}
+
+.sepia-img {
+  filter: sepia(0.35) contrast(1.02) saturate(0.9);
+}
+
+@keyframes unfurl {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.unfurl {
+  animation: unfurl 0.25s ease-out;
+}
